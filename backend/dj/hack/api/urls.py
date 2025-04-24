@@ -15,9 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path ,include
+from django.urls import path
+from .views import GenerateAIContentView
 
 urlpatterns = [
-  
-
+    path('generate-ai-content/', GenerateAIContentView.as_view(), name='generate_ai_content'),
 ]

@@ -1,10 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-class User(AbstractUser):
+class Users(AbstractUser):
     email = models.EmailField(unique=True)
     # username, password already included in AbstractUser
+class User(models.Model):
+    username = models.CharField(max_length=150, unique=True)
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)  # Or use make_password for secure hashes
 
+    def __str__(self):
+        return self.username
 class Subscription(models.Model):
     SUBSCRIPTION_TYPES = (
         ('Free', 'Free'),
