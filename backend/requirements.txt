@@ -10,3 +10,4 @@ passlib[bcrypt]
 asyncpg
 google-generativeai
 aiohttp
+python-multipart
