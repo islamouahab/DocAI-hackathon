@@ -8,3 +8,4 @@ sqlalchemy[asyncio]
 pydantic
 passlib[bcrypt]
 asyncpg
+google-generativeai

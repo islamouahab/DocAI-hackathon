@@ -17,6 +17,8 @@ class Settings:
     
     SECRET_KEY: str = os.getenv("SECRET_KEY", "9768a4f349e9c0cb3a3b3c16fb54b87c")
     ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 600
+
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY")
 
 settings = Settings()

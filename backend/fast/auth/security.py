@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime, timedelta
 
 from jose import JWTError, jwt
@@ -13,7 +12,7 @@ from config import settings
 from db import get_db
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/")
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -47,8 +46,24 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
 	except JWTError:
 		raise credentials_exception
 
-	result = await db.execute(select(User).where(User.id == uuid.UUID(user_id)))
+	result = await db.execute(select(User).where(User.id == int(user_id)))
 	user = result.scalars().first()
 	if user is None:
 		raise credentials_exception
 	return user
+
+
+async def get_user_id_from_token(token: str):
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+        user_id = payload.get("sub")
+        if user_id is not None:
+            return user_id
+        else:
+            return None
+    except JWTError:
+        print("Invalid token")
+        return None 
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return None

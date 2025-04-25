@@ -18,11 +18,8 @@ async_session = sessionmaker(
 Base = declarative_base()
 
 async def get_db():
-    db = async_session()
-    try:
+    async with async_session() as db:
         yield db
-    finally:
-        await db.close()
 
 async def create_tables():
     async with engine.begin() as conn:
