@@ -42,10 +42,16 @@ export default function ChatInput({ chatId, setChatId, chatDisplayRef, appendMes
     appendMessage(message, 'user');
    
     const formData = new FormData();
-    formData.append('chat_id', chatId);
+      if(chatId==null){
+    formData.append('chat_id', 0);
+      }
+      else{
+          formData.append('chat_id',chatId);
+      }
     formData.append('prompt', message);
     images.forEach((image) => {
-        formData.append('image', image); // same key for all files
+        formData.append('image', image);
+        appendMessage(`${image.name}`,'user');// same key for all files
       });
       
     
