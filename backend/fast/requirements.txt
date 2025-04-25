@@ -9,3 +9,4 @@ pydantic
 passlib[bcrypt]
 asyncpg
 google-generativeai
+aiohttp

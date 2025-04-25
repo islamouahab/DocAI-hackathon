@@ -20,5 +20,6 @@ class Settings:
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 600
 
     GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY")
+    UPLOAD_FOLDER: str = os.getenv("UPLOAD_FOLDER", "uploads")
 
 settings = Settings()
