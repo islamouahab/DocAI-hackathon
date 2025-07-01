@@ -1,7 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "../assets/logo.jpg";
 import robot from "../assets/mirou.jpg";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const Premium = ()=>{
+    let token = JSON.parse(localStorage.getItem('token'));
+    let nav = useNavigate();
+    const set_premium = async()=>{
+        try {
+            const response = await axios.get('http://localhost:8000/api/set_premium', {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            if (response.data.error_content){
+                alert(response.data.error_content)
+            }
+            nav('/home')
+          } catch (error) {
+            console.error('Error fetching history:', error);
+          }
+    }
     return (
     <div>
     <nav className="relative flex items-center justify-between px-8 py-4 border-b border-gray-200">
@@ -57,7 +76,7 @@ const Premium = ()=>{
                   </li>
               </ul>
               <div class="action">
-              <a class="button" href="#">
+              <a class="button" href="#" onClick ={()=>set_premium()}>
                   Choose plan
               </a>
               </div>

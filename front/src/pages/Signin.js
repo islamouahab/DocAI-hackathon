@@ -10,14 +10,14 @@ const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   useEffect(()=>{
-    if (!localStorage.getItem('token')){
+    if (localStorage.getItem('token')){
         nav('/home')
     }
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://192.168.221.6:8000/auth/login', {
+      const response = await axios.post('http://localhost:8000/auth/login', {
         email,
         password,
       });

@@ -12,7 +12,7 @@ export default function ChatInput({ chatId, setChatId, chatDisplayRef, appendMes
   useEffect(() => {
     const checkIsPremium = async () => {
       try {
-        const response = await axios.get(`http://192.168.221.6:8000/api/is_premium`, {
+        const response = await axios.get(`http://localhost:8000/api/is_premium`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -58,7 +58,7 @@ export default function ChatInput({ chatId, setChatId, chatDisplayRef, appendMes
     try {
       setIsSending(true);
       const response = await axios.post(
-        'http://192.168.221.6:8000/ai/generate',
+        'http://localhost:8000/ai/generate',
         formData,
         {
           headers: {

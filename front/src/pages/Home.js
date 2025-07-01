@@ -13,7 +13,7 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (!localStorage.getItem('token')) {
-      nav('login/');
+      nav('/login');
     }
   }, []);
 
@@ -44,7 +44,7 @@ const HomeScreen = () => {
 
   const fetchHistory = async () => {
     try {
-      const response = await axios.get('http://192.168.221.6:8000/ai/chats', {
+      const response = await axios.get('http://localhost:8000/ai/chats', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -64,7 +64,7 @@ const HomeScreen = () => {
         chatDisplayRef.current.innerHTML = ''; // Clear existing messages
       }
 
-      const response = await axios.get(`http://192.168.221.6:8000/ai/chats/${id}`,{
+      const response = await axios.get(`http://localhost:8000/ai/chats/${id}`,{
         headers: {
           Authorization: `Bearer ${token}`
         }

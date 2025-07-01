@@ -11,19 +11,20 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     let nav = useNavigate();
     useEffect(()=>{
-    if (!localStorage.getItem('token')){
+    if (localStorage.getItem('token')){
         nav('/home')
     }
     });
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://192.168.237.6:8000/auth/register', {
+          const response = await axios.post('http://localhost:8000/auth/register', {
             username,
             email,
             password,
           });
           console.log("Signup successful:", response.data);
+          nav('/home')
         } catch (error) {
           console.error("Signup error:", error);
         }

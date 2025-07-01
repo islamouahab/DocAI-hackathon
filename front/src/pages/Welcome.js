@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import robot from "../assets/mirou.jpg";
+import { useNavigate } from "react-router-dom";
 const Welcome = () => {
+  const nav = useNavigate();
+  useEffect(()=>{
+    if (localStorage.getItem("token"))
+    nav('/home')
+  })
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
